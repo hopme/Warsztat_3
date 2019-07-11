@@ -1,0 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<ul>
+    <li><a href=<c:url value="/"/>>Strona główna</a></li>
+    <li><a href=<c:url value="/allGroups"/>>Grupy</a></li>
+    <li><a href=<c:url value="/panelAdmin"/>>Panel administratora</a></li>
+</ul>

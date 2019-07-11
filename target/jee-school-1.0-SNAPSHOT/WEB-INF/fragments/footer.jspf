@@ -1,0 +1,6 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<footer>
+    <div>
+        <h5>Copyright lorem-ipsum.pl</h5>
+    </div>
+</footer>
