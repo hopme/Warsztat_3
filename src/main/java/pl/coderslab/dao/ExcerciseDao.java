@@ -25,9 +25,6 @@ public class ExcerciseDao {
             "SELECT * FROM excercise LEFT JOIN solution ON excercise.id = solution.excercise_id WHERE user_id != ? OR user_id is NULL";
 
 
-
-
-
     public Excercise create(Excercise excercise) {
         try (Connection conn = ConnectionUtil.getConnection()) {
 
@@ -92,7 +89,7 @@ public class ExcerciseDao {
             ArrayList<Excercise> excercises = new ArrayList<>();
             PreparedStatement statement = conn.prepareStatement(FIND_ALL_EXCERCISE_QUERY);
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 Excercise excercise = new Excercise();
                 excercise.setId(resultSet.getInt("id"));
                 excercise.setTitle(resultSet.getString("title"));
@@ -103,16 +100,16 @@ public class ExcerciseDao {
         } catch (SQLException e) {
             System.out.println("Error while looking for all excercises array");
         }
-        return null;
+        return new ArrayList<>();
     }
 
-    public ArrayList<Excercise> findAllNotAssignedToUserId(int userId){
-        try (Connection connection = ConnectionUtil.getConnection()){
+    public ArrayList<Excercise> findAllNotAssignedToUserId(int userId) {
+        try (Connection connection = ConnectionUtil.getConnection()) {
             ArrayList<Excercise> excercises = new ArrayList<>();
             PreparedStatement statement = connection.prepareStatement(FIND_ALL_ASSIGNED_TO_USER_ID);
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 Excercise excercise = new Excercise();
                 excercise.setId(resultSet.getInt("id"));
                 excercise.setTitle(resultSet.getString("title"));
@@ -120,19 +117,19 @@ public class ExcerciseDao {
                 excercises.add(excercise);
             }
             return excercises;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Can't find exercises not assigned to user id: " + userId);
         }
-        return null;
+        return new ArrayList<>();
     }
 
-    public ArrayList<Excercise> findAllAssignedToUserId(int userId){
-        try (Connection connection = ConnectionUtil.getConnection()){
+    public ArrayList<Excercise> findAllAssignedToUserId(int userId) {
+        try (Connection connection = ConnectionUtil.getConnection()) {
             ArrayList<Excercise> excercises = new ArrayList<>();
             PreparedStatement statement = connection.prepareStatement(FIND_ALL_ASSIGNED_TO_USER_ID);
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 Excercise excercise = new Excercise();
                 excercise.setId(resultSet.getInt("id"));
                 excercise.setTitle(resultSet.getString("title"));
@@ -141,10 +138,10 @@ public class ExcerciseDao {
                 excercises.add(excercise);
             }
             return excercises;
-        } catch (SQLException e){
+        } catch (SQLException e) {
             System.out.println("Can't find exercises assigned to user id: " + userId);
         }
-        return null;
+        return new ArrayList<>();
     }
 
 }
